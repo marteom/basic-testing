@@ -28,10 +28,8 @@ describe('throttledGetDataFromApi', () => {
 
   test('should return response data', async () => {
     const data = 'value';
-    
-    axios.Axios.prototype.get = jest
-      .fn()
-      .mockResolvedValue({ data });
+
+    axios.Axios.prototype.get = jest.fn().mockResolvedValue({ data });
     const mockData = await throttledGetDataFromApi('/');
     jest.runAllTimers();
     expect(mockData).toBe(data);

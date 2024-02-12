@@ -1,7 +1,8 @@
 import { mockOne, mockTwo, mockThree, unmockedFunction } from './index';
 
 jest.mock('./index', () => {
-  const originalModule = jest.requireActual<typeof import('./index')>('./index');
+  const originalModule =
+    jest.requireActual<typeof import('./index')>('./index');
   return {
     __esModule: true,
     ...originalModule,
@@ -18,7 +19,7 @@ describe('partial mocking', () => {
 
   beforeEach(() => {
     jest.disableAutomock();
-  })
+  });
   test('mockOne, mockTwo, mockThree should not log into console', () => {
     const consoleLog = jest.spyOn(console, 'log');
     mockOne();
@@ -27,7 +28,6 @@ describe('partial mocking', () => {
     expect(consoleLog).not.toHaveBeenCalled();
   });
 
-  
   test('unmockedFunction should log into console', () => {
     const consoleLog = jest.spyOn(console, 'log');
     unmockedFunction();
