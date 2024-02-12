@@ -1,4 +1,10 @@
-import { throwError, throwCustomError, resolveValue, MyAwesomeError, rejectCustomError } from './index';
+import {
+  throwError,
+  throwCustomError,
+  resolveValue,
+  MyAwesomeError,
+  rejectCustomError,
+} from './index';
 
 describe('resolveValue', () => {
   test('should resolve provided value', async () => {
@@ -9,30 +15,27 @@ describe('resolveValue', () => {
 
 describe('throwError', () => {
   test('should throw error with provided message', () => {
-      try {
-        throwError('Hello');
-      }
-      catch(err: unknown) {
-        expect(err).toEqual(new Error('Hello'));
-      }
-    })
+    try {
+      throwError('Hello');
+    } catch (err: unknown) {
+      expect(err).toEqual(new Error('Hello'));
+    }
+  });
   test('should throw error with default message if message is not provided', () => {
     try {
       throwError();
-    }
-    catch(err: unknown) {
-      expect(err).toEqual(new Error('Oops!')
-      );
+    } catch (err: unknown) {
+      expect(err).toEqual(new Error('Oops!'));
     }
   });
-});new Error
+});
+new Error();
 
 describe('throwCustomError', () => {
   test('should throw custom error', () => {
     try {
       throwCustomError();
-    }
-    catch(err: unknown) {
+    } catch (err: unknown) {
       expect(err).toEqual(new MyAwesomeError());
     }
   });

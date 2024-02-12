@@ -1,10 +1,16 @@
-import { BankAccount, InsufficientFundsError, SynchronizationFailedError, TransferFailedError, getBankAccount } from '.';
+import {
+  BankAccount,
+  InsufficientFundsError,
+  SynchronizationFailedError,
+  TransferFailedError,
+  getBankAccount,
+} from '.';
 
 let bankAccount: BankAccount;
-const initialBalance: number = 500;
-const amount: number = 600;
-const deposit: number = 500;
-const withDraw: number = 300;
+const initialBalance = 500;
+const amount = 600;
+const deposit = 500;
+const withDraw = 300;
 
 beforeEach(() => {
   bankAccount = getBankAccount(initialBalance);
@@ -18,8 +24,7 @@ describe('BankAccount', () => {
   test('should throw InsufficientFundsError error when withdrawing more than balance', () => {
     try {
       bankAccount.withdraw(amount);
-    }
-    catch(err: unknown) {
+    } catch (err: unknown) {
       expect(err).toEqual(new InsufficientFundsError(initialBalance));
     }
   });
@@ -27,8 +32,7 @@ describe('BankAccount', () => {
   test('should throw error when transferring more than balance', () => {
     try {
       bankAccount.transfer(amount, new BankAccount(100));
-    }
-    catch(err: unknown) {
+    } catch (err: unknown) {
       expect(err).toEqual(new InsufficientFundsError(initialBalance));
     }
   });
@@ -36,8 +40,7 @@ describe('BankAccount', () => {
   test('should throw error when transferring to the same account', () => {
     try {
       bankAccount.transfer(amount, bankAccount);
-    }
-    catch(err: unknown) {
+    } catch (err: unknown) {
       expect(err).toEqual(new TransferFailedError());
     }
   });

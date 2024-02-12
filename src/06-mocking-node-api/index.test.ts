@@ -15,8 +15,8 @@ describe('doStuffByTimeout', () => {
   test('should set timeout with provided callback and timeout', () => {
     const callback = jest.fn();
     const delay = 1000;
-  
-    jest.spyOn(global, 'setTimeout')
+
+    jest.spyOn(global, 'setTimeout');
     doStuffByTimeout(callback, delay);
     expect(setTimeout).toHaveBeenCalledTimes(1);
     expect(setTimeout).toHaveBeenCalledWith(callback, delay);
@@ -57,7 +57,7 @@ describe('doStuffByInterval', () => {
   test('should call callback multiple times after multiple intervals', () => {
     const callback = jest.fn();
     const intervalDuration = 1000;
-    const timeoutDuration = 3000; 
+    const timeoutDuration = 3000;
 
     doStuffByInterval(callback, intervalDuration);
     jest.advanceTimersByTime(timeoutDuration);
